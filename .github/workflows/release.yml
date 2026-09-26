@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check version
+        run: |
+          VERSION=$(jq -r .version Info.json)
+          if [ "v$VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match version $VERSION in Info.json"
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - name: Build package
+        run: sh scripts/pack.sh
+
+      - name: Write release notes
+        run: |
+          awk -v version="$VERSION" '$0 == "## " version { found = 1; next } /^## / { found = 0 } found' CHANGELOG.md > notes.md
+          cat >> notes.md <<'NOTES'
+
+          ### Install
+
+          In IINA, open **Settings → Plugins → Install from GitHub…** and enter `lenadweb/iina-plugin-keystone`, or download the attached `.iinaplgz` and open it with IINA.
+
+          Requires IINA 1.4.0 or newer.
+          NOTES
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "build/Keystone-$VERSION.iinaplgz" \
+            --title "Keystone $VERSION" \
+            --notes-file notes.md \
+            --verify-tag

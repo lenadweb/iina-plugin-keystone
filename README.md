@@ -117,9 +117,15 @@ ui/preferences.html  settings page
 
 ### Releasing
 
-1. Bump `version` and increment `ghVersion` in `Info.json`, and update `CHANGELOG.md`.
-2. Run `npm run pack` to build `build/Keystone-<version>.iinaplgz`.
-3. Push to `main`, then create a GitHub release tagged `v<version>` with the `.iinaplgz` attached.
+1. Bump `version` and increment `ghVersion` in `Info.json`, and add a section for the version to `CHANGELOG.md`.
+2. Commit, push to `main`, then tag and push the tag:
+
+   ```bash
+   git tag v1.0.1
+   git push origin v1.0.1
+   ```
+
+The [Release workflow](.github/workflows/release.yml) checks that the tag matches `Info.json`, builds `Keystone-<version>.iinaplgz` and publishes a GitHub release with the notes from `CHANGELOG.md`. Run `npm run pack` to build the same package locally.
 
 IINA compares `ghVersion` with `Info.json` on `main` to offer updates, and installs the `.iinaplgz` from the latest release.
 
