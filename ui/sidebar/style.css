@@ -1,0 +1,241 @@
+:root {
+  color-scheme: light dark;
+  --text: rgba(0, 0, 0, 0.85);
+  --secondary: rgba(0, 0, 0, 0.5);
+  --separator: rgba(0, 0, 0, 0.1);
+  --control: rgba(0, 0, 0, 0.06);
+  --control-hover: rgba(0, 0, 0, 0.1);
+  --accent: #007aff;
+  --accent-fill: rgba(0, 122, 255, 0.18);
+  --frame: rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: rgba(255, 255, 255, 0.85);
+    --secondary: rgba(255, 255, 255, 0.5);
+    --separator: rgba(255, 255, 255, 0.1);
+    --control: rgba(255, 255, 255, 0.08);
+    --control-hover: rgba(255, 255, 255, 0.14);
+    --accent: #0a84ff;
+    --accent-fill: rgba(10, 132, 255, 0.25);
+    --frame: rgba(255, 255, 255, 0.3);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  color: var(--text);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+main {
+  padding: 14px 16px 20px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+h2 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--secondary);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.track {
+  display: block;
+  width: 32px;
+  height: 18px;
+  border-radius: 9px;
+  background: var(--control-hover);
+  transition: background 0.15s ease;
+}
+
+.thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s ease;
+}
+
+.switch input:checked + .track {
+  background: var(--accent);
+}
+
+.switch input:checked + .track .thumb {
+  transform: translateX(14px);
+}
+
+.preview {
+  margin: 0 0 16px;
+  padding: 10px;
+  border-radius: 8px;
+  background: var(--control);
+}
+
+.preview svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.frame {
+  fill: none;
+  stroke: var(--frame);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.shape {
+  fill: var(--accent-fill);
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  transition: opacity 0.15s ease;
+}
+
+body.disabled .shape {
+  opacity: 0.35;
+}
+
+.axis {
+  padding: 12px 0;
+  border-top: 1px solid var(--separator);
+}
+
+.axis-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.value {
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin: 4px 0;
+  accent-color: var(--accent);
+}
+
+.axis-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--secondary);
+}
+
+.axis-footer .active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.tilt {
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.stepper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+button {
+  font: inherit;
+  color: var(--text);
+  padding: 4px 0;
+  border: 0;
+  border-radius: 6px;
+  background: var(--control);
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--control-hover);
+}
+
+button:active {
+  transform: translateY(0.5px);
+}
+
+.reset {
+  width: 100%;
+  margin-top: 4px;
+  padding: 6px 0;
+}
+
+.shortcuts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 10px;
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--separator);
+  font-size: 11px;
+  color: var(--secondary);
+}
+
+.shortcuts dt,
+.shortcuts dd {
+  margin: 0;
+}
+
+kbd {
+  font: 11px -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: var(--control);
+  color: var(--text);
+}
+
+kbd[hidden] {
+  display: none;
+}

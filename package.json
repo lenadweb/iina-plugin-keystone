@@ -1,0 +1,20 @@
+{
+  "name": "iina-plugin-keystone",
+  "version": "1.0.0",
+  "private": true,
+  "description": "IINA plugin for vertical and horizontal keystone correction on projectors",
+  "license": "MIT",
+  "author": "lenadweb (https://github.com/lenadweb)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lenadweb/iina-plugin-keystone.git"
+  },
+  "scripts": {
+    "link": "/Applications/IINA.app/Contents/MacOS/iina-plugin link .",
+    "unlink": "/Applications/IINA.app/Contents/MacOS/iina-plugin unlink .",
+    "pack": "sh scripts/pack.sh"
+  },
+  "devDependencies": {
+    "iina-plugin-definition": "^0.99.4"
+  }
+}

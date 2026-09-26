@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Keystone Preferences</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --secondary: rgba(0, 0, 0, 0.5);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --secondary: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    }
+
+    .pref-section {
+      margin-bottom: 16px;
+    }
+
+    .pref-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    input[type="number"] {
+      width: 72px;
+    }
+
+    .pref-help {
+      margin: 4px 0 0;
+      font-size: 11px;
+      color: var(--secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="pref-section">
+    <label class="pref-row">
+      Adjustment step
+      <input type="number" min="0.05" max="5" step="0.05" data-type="float" data-pref-key="step" />
+      %
+    </label>
+    <p class="pref-help">How much each shortcut or stepper button changes the correction.</p>
+  </div>
+
+  <div class="pref-section">
+    <label class="pref-row">
+      Projector throw ratio
+      <input type="number" min="0.3" max="3" step="0.05" data-type="float" data-pref-key="throwRatio" />
+      : 1
+    </label>
+    <p class="pref-help">
+      Used only to estimate the tilt angle shown next to each value. Most portable projectors are
+      between 1.0 and 1.5. Check your projector's specifications for the exact number.
+    </p>
+  </div>
+
+  <div class="pref-section">
+    <label class="pref-row">
+      <input type="checkbox" data-pref-key="manageHardwareDecoding" />
+      Switch hardware decoding to copy-back mode while correction is active
+    </label>
+    <p class="pref-help">
+      The correction runs as an FFmpeg filter, which cannot read frames that stay in GPU memory.
+      When enabled, Keystone switches <code>hwdec</code> to <code>auto-copy</code> while a correction
+      is applied and restores your setting afterwards. Disable only if you manage decoding yourself.
+    </p>
+  </div>
+</body>
+</html>
