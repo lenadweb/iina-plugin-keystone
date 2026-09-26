@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- Declare the `file-system` permission, which upcoming IINA versions require for plugins that apply video filters. Keystone does not read or write any files.
+
 ## 1.0.0
 
 - Vertical and horizontal keystone correction with perspective-correct warping.

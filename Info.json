@@ -1,16 +1,16 @@
 {
   "name": "Keystone",
   "identifier": "io.github.lenadweb.keystone",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vertical and horizontal keystone correction for projectors, adjusted live from the sidebar or the keyboard.",
   "author": {
     "name": "lenadweb",
     "url": "https://github.com/lenadweb"
   },
   "ghRepo": "lenadweb/iina-plugin-keystone",
-  "ghVersion": 1,
+  "ghVersion": 2,
   "entry": "src/index.js",
-  "permissions": ["show-osd"],
+  "permissions": ["show-osd", "file-system"],
   "sidebarTab": {
     "name": "Keystone"
   },

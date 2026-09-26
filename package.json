@@ -1,6 +1,6 @@
 {
   "name": "iina-plugin-keystone",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "IINA plugin for vertical and horizontal keystone correction on projectors",
   "license": "MIT",

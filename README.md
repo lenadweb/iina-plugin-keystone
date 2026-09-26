@@ -71,6 +71,13 @@ Choose **Plugin → Show Keystone Panel** to open the Keystone tab in IINA's plu
 | Projector throw ratio | 1.2 : 1 | Only used to estimate the tilt angle shown in the sidebar and OSD |
 | Copy-back hardware decoding | On | Switches `hwdec` to `auto-copy` while a correction is active and restores it afterwards |
 
+## Permissions
+
+| Permission | Why |
+|---|---|
+| Show OSD messages | Shows the current correction when you use a shortcut |
+| Access the file system | IINA requires it for plugins that change mpv's video filters. Keystone only adds and removes its own `@keystone` filter and never reads or writes files |
+
 ## How it works
 
 Keystone adds a single labelled FFmpeg filter chain to mpv:
